@@ -68,8 +68,8 @@ src/
 │   ├── auth/             # Authentication components
 │   ├── chat/             # Chat-related components
 │   ├── dashboard/        # Dashboard components
-│   ├── providers/        # Context providers
 │   └── ui/               # Reusable UI components
+├── providers/        # Context providers
 ├── hooks/                # Custom React hooks
 ├── lib/                  # Utility functions and constants
 ├── store/               # Zustand store definitions
