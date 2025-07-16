@@ -31,15 +31,12 @@ export default function ChatPage({ params }: ChatPageProps) {
 
   // Set current chatroom and initialize messages if needed
   useEffect(() => {
-    console.log('Setting up chat:', params.id);
     
     if (!initialized.current[params.id]) {
-      console.log('Initializing chatroom:', params.id);
       setCurrentChatroom(params.id);
       
       // Initialize messages if they don't exist
       if (!messages[params.id] || !Array.isArray(messages[params.id]) || messages[params.id].length === 0) {
-        console.log('Adding welcome message');
         addMessage({
           id: generateId(),
           content: "Welcome to your new chat! Send a message to get started.",
@@ -54,7 +51,6 @@ export default function ChatPage({ params }: ChatPageProps) {
   }, [params.id, setCurrentChatroom, addMessage, messages]);
 
   const handleSubmit = async (content: string, image?: string) => {
-    console.log('Submitting message:', { content, image });
     
     // Add user message
     const userMessage = {

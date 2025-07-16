@@ -23,7 +23,6 @@ export function CreateChatroomButton() {
     setIsCreating(true);
     try {
       const id = generateId();
-      console.log('Creating chat with ID:', id);
       
       const chatroom = {
         id,
@@ -31,11 +30,9 @@ export function CreateChatroomButton() {
         createdAt: new Date().toISOString(),
       };
       
-      console.log('Creating chatroom:', chatroom);
       createChatroom(chatroom);
       
       const chatPath = `${ROUTES.CHAT}/${id}`;
-      console.log('Navigating to:', chatPath);
       
       setIsOpen(false);
       setTitle('');

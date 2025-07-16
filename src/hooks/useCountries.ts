@@ -30,7 +30,6 @@ export function useCountries() {
         setError(null);
       } catch (error) {
         setError('Failed to fetch countries');
-        console.error('Error fetching countries:', error);
       } finally {
         setIsLoading(false);
       }

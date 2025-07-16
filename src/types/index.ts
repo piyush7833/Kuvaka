@@ -46,5 +46,7 @@ export interface ChatState {
 
 export interface ThemeState {
   theme: 'light' | 'dark';
+  mounted: boolean;
+  resolvedTheme: 'light' | 'dark';
   toggleTheme: () => void;
 } 
