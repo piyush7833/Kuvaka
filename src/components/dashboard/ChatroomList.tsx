@@ -4,7 +4,7 @@ import { MessageSquare, Trash2 } from 'lucide-react';
 import { useChatStore } from '@/store/useChatStore';
 import { ROUTES } from '@/lib/constants';
 import { cn } from '@/lib/utils';
-import { Button } from '@/components/ui/button';
+import { Button } from '@/components/ui/Button';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter, DialogTrigger } from '@/components/ui/Dialog';
 import { useState } from 'react';
 import { toast } from 'react-hot-toast';

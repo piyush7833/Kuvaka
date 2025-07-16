@@ -1,12 +1,12 @@
 'use client';
 
-import * as React from 'react';
+import { useState, useRef, useEffect, useCallback, KeyboardEvent, ChangeEvent } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import * as z from 'zod';
-import { Button } from '@/components/ui/button';
+import { Button } from '@/components/ui/Button';
 import { Textarea } from '@/components/ui/Textarea';
-import { Form } from '@/components/ui/form';
+import { Form } from '@/components/ui/Form';
 import { cn } from '@/lib/utils';
 import { ImageIcon } from 'lucide-react';
 
@@ -22,10 +22,14 @@ interface ChatInputProps extends React.HTMLAttributes<HTMLDivElement> {
 }
 
 export function ChatInput({ handleSubmitMessage, isLoading, className, ...props }: ChatInputProps) {
-  const [selectedImage, setSelectedImage] = React.useState<string | null>(null);
-  const fileInputRef = React.useRef<HTMLInputElement>(null);
-  const resetRef = React.useRef<((values?: Partial<ChatInputValues>) => void) | null>(null);
-  const textareaRef = React.useRef<HTMLTextAreaElement>(null);
+  const [selectedImage, setSelectedImage] = useState<string | null>(null);
+  const fileInputRef = useRef<HTMLInputElement>(null);
+  const resetRef = useRef<((values?: Partial<ChatInputValues>) => void) | null>(null);
+  const textareaRef = useRef<HTMLTextAreaElement | null>(null);
+
+  const setTextareaRef = useCallback((element: HTMLTextAreaElement | null) => {
+    textareaRef.current = element;
+  }, []);
 
   const handleSubmit = async (values: ChatInputValues) => {
     if (values.message?.trim() || selectedImage) {
@@ -36,7 +40,7 @@ export function ChatInput({ handleSubmitMessage, isLoading, className, ...props 
     }
   };
 
-  const handleKeyDown = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
+  const handleKeyDown = (e: KeyboardEvent<HTMLTextAreaElement>) => {
     // Submit on Enter (without shift)
     if (e.key === 'Enter' && !e.shiftKey) {
       e.preventDefault();
@@ -50,7 +54,7 @@ export function ChatInput({ handleSubmitMessage, isLoading, className, ...props 
     }
   };
 
-  const handleImageUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleImageUpload = (e: ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (file) {
       const reader = new FileReader();
@@ -63,7 +67,7 @@ export function ChatInput({ handleSubmitMessage, isLoading, className, ...props 
   };
 
   // Focus textarea on mount
-  React.useEffect(() => {
+  useEffect(() => {
     textareaRef.current?.focus();
   }, []);
 
@@ -128,7 +132,7 @@ export function ChatInput({ handleSubmitMessage, isLoading, className, ...props 
                       {...rest}
                       ref={(e) => {
                         ref(e);
-                        textareaRef.current = e;
+                        setTextareaRef(e);
                       }}
                       rows={1}
                       onKeyDown={handleKeyDown}

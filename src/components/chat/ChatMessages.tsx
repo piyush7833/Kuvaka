@@ -1,7 +1,7 @@
 'use client';
-import * as React from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useChatStore } from '@/store/useChatStore';
-import { ChatMessage } from '@/components/chat/ChatMessage';
+import { ChatMessage } from './ChatMessage';
 import { Skeleton } from '@/components/ui/Skeleton';
 import { cn } from '@/lib/utils';
 import { MESSAGES_PER_PAGE } from '@/lib/constants';
@@ -13,17 +13,17 @@ interface ChatMessagesProps {
 export function ChatMessages({ chatroomId }: ChatMessagesProps) {
   const messages = useChatStore((state) => state.messages[chatroomId] || []);
   const isTyping = useChatStore((state) => state.isTyping);
-  const [page, setPage] = React.useState(1);
-  const [isLoading, setIsLoading] = React.useState(false);
-  const [hasMore, setHasMore] = React.useState(true);
-  const [isInitialLoad, setIsInitialLoad] = React.useState(true);
-  const containerRef = React.useRef<HTMLDivElement>(null);
-  const bottomRef = React.useRef<HTMLDivElement>(null);
-  const prevScrollHeightRef = React.useRef<number>(0);
-  const lastMessageLengthRef = React.useRef<number>(messages.length);
+  const [page, setPage] = useState(1);
+  const [isLoading, setIsLoading] = useState(false);
+  const [hasMore, setHasMore] = useState(true);
+  const [isInitialLoad, setIsInitialLoad] = useState(true);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const bottomRef = useRef<HTMLDivElement>(null);
+  const prevScrollHeightRef = useRef<number>(0);
+  const lastMessageLengthRef  =useRef<number>(messages.length);
 
   // Initial scroll to bottom
-  React.useEffect(() => {
+  useEffect(() => {
     if (isInitialLoad && messages.length > 0) {
       bottomRef.current?.scrollIntoView();
       setIsInitialLoad(false);
@@ -31,7 +31,7 @@ export function ChatMessages({ chatroomId }: ChatMessagesProps) {
   }, [messages.length, isInitialLoad]);
 
   // Handle scroll to load more messages
-  React.useEffect(() => {
+  useEffect(() => {
     const container = containerRef.current;
     if (!container) return;
 
@@ -59,7 +59,7 @@ export function ChatMessages({ chatroomId }: ChatMessagesProps) {
   }, [isLoading, hasMore, messages.length]);
 
   // Maintain scroll position when loading more messages
-  React.useEffect(() => {
+  useEffect(() => {
     const container = containerRef.current;
     if (container && prevScrollHeightRef.current) {
       const newScrollHeight = container.scrollHeight;
@@ -70,7 +70,7 @@ export function ChatMessages({ chatroomId }: ChatMessagesProps) {
   }, [page]);
 
   // Only scroll to bottom for new messages if we're already at the bottom
-  React.useEffect(() => {
+  useEffect(() => {
     const container = containerRef.current;
     if (!container) return;
 

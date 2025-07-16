@@ -1,10 +1,10 @@
 'use client';
 
-import React from 'react';
-import { format } from 'date-fns';
+import { useState, useCallback } from 'react';
 import { toast } from 'react-hot-toast';
-import { Avatar } from '@/components/ui/avatar';
-import { Button } from '@/components/ui/button';
+import { formatDistanceToNow } from 'date-fns';
+import { Avatar } from '@/components/ui/Avatar';
+import { Button } from '@/components/ui/Button';
 import { IconCopy, IconCheck } from '@/components/ui/Icons';
 import { cn } from '@/lib/utils';
 
@@ -17,9 +17,9 @@ interface ChatMessageProps {
 }
 
 export function ChatMessage({ content, sender, timestamp, isLoading, image }: ChatMessageProps) {
-  const [copied, setCopied] = React.useState(false);
+  const [copied, setCopied] = useState(false);
 
-  const onCopy = React.useCallback(() => {
+  const onCopy = useCallback(() => {
     navigator.clipboard.writeText(content).then(() => {
       setCopied(true);
       toast.success('Message copied to clipboard');
@@ -27,7 +27,7 @@ export function ChatMessage({ content, sender, timestamp, isLoading, image }: Ch
     });
   }, [content]);
 
-  const formattedTime = timestamp ? format(new Date(timestamp), 'h:mm a') : '';
+  const formattedTime = timestamp ? formatDistanceToNow(new Date(timestamp), { addSuffix: true }) : '';
   const isAI = sender === 'ai';
 
   return (

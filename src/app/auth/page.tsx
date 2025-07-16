@@ -38,7 +38,7 @@ export default function AuthPage() {
     await new Promise(resolve => setTimeout(resolve, delay));
 
     // Simulate successful verification (in real app, this would be an API call)
-    if (values.otp === '123456') { // For demo purposes
+    if (values.otp.length === 6) { // For demo purposes
       login({
         id: '1',
         phoneNumber: phoneData.phoneNumber,

@@ -2,11 +2,11 @@
 
 import * as React from 'react';
 import { Moon, Sun } from 'lucide-react';
-import { Button } from '@/components/ui/button';
-import { useThemeSetup } from '@/hooks/useThemeSetup';
+import { useThemeStore } from '@/store/useThemeStore';
+import { Button } from '@/components/ui/Button';
 
 export function ThemeToggle() {
-  const { mounted, resolvedTheme, toggleTheme } = useThemeSetup();
+  const { mounted, resolvedTheme, toggleTheme } = useThemeStore();
 
   if (!mounted) {
     return (

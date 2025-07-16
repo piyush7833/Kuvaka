@@ -1,7 +1,7 @@
 'use client';
 import * as React from 'react';
 import { Search } from 'lucide-react';
-import { Input } from '@/components/ui/input';
+import { Input } from '@/components/ui/Input';
 import { useChatStore } from '@/store/useChatStore';
 import { useSearch } from '@/hooks/useSearch';
 

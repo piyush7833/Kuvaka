@@ -2,8 +2,8 @@
 import * as React from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
-import { ArrowLeft, Trash2 } from 'lucide-react';
-import { Button } from '@/components/ui/button';
+import { ArrowLeft, MoreVertical, Trash2 } from 'lucide-react';
+import { Button } from '@/components/ui/Button';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter, DialogTrigger } from '@/components/ui/Dialog';
 import { useChatStore } from '@/store/useChatStore';
 import { ROUTES } from '@/lib/constants';
