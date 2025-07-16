@@ -1,0 +1,121 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 220 23% 97%;  /* Light gray with slight blue tint */
+    --foreground: 220 23% 12%;
+    --card: 220 23% 97%;
+    --card-foreground: 220 23% 12%;
+    --popover: 220 23% 97%;
+    --popover-foreground: 220 23% 12%;
+    --primary: 221 91% 76%;  /* Same as dark theme primary */
+    --primary-foreground: 220 23% 12%;
+    --secondary: 220 23% 93%;  /* Slightly darker than background */
+    --secondary-foreground: 220 23% 12%;
+    --muted: 220 23% 93%;
+    --muted-foreground: 220 15% 45%;
+    --accent: 220 23% 93%;
+    --accent-foreground: 220 23% 12%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 220 23% 87%;
+    --input: 220 23% 87%;
+    --ring: 221 91% 76%;
+    --radius: 0.5rem;
+  }
+
+  .dark {
+    --background: 0 0% 12%;  /* #1f1f1f */
+    --foreground: 0 0% 98%;
+    --card: 0 0% 12%;
+    --card-foreground: 0 0% 98%;
+    --popover: 0 0% 12%;
+    --popover-foreground: 0 0% 98%;
+    --primary: 221 91% 76%;  /* #8AB4F8 */
+    --primary-foreground: 0 0% 12%;
+    --secondary: 0 0% 16%;  /* #2a2a2a */
+    --secondary-foreground: 0 0% 98%;
+    --muted: 0 0% 16%;
+    --muted-foreground: 0 0% 63%;
+    --accent: 0 0% 16%;
+    --accent-foreground: 0 0% 98%;
+    --destructive: 0 63% 31%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 0 0% 16%;
+    --input: 0 0% 16%;
+    --ring: 221 91% 76%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-[hsl(var(--background))] text-[hsl(var(--foreground))];
+  }
+
+  /* Custom scrollbar */
+  ::-webkit-scrollbar {
+    @apply w-2;
+  }
+
+  ::-webkit-scrollbar-track {
+    @apply bg-[hsl(var(--muted))];
+  }
+
+  ::-webkit-scrollbar-thumb {
+    @apply rounded-full bg-[hsl(var(--border))] hover:bg-[hsl(var(--border))]/80;
+  }
+}
+
+@layer components {
+  .select-base {
+    @apply flex h-12 w-full items-center justify-between rounded-xl border px-4 py-2
+    border-[hsl(var(--input))] bg-[hsl(var(--background))] text-base text-[hsl(var(--foreground))]
+    transition-colors duration-200
+    hover:border-[hsl(var(--input))]/80
+    focus:border-[hsl(var(--ring))] focus:outline-none focus:ring-1 focus:ring-[hsl(var(--ring))]
+    disabled:cursor-not-allowed disabled:opacity-50;
+  }
+}
+
+/* Animation classes */
+.animate-in {
+  animation: fade-in 0.3s ease-in-out;
+}
+
+.animate-out {
+  animation: fade-out 0.3s ease-in-out;
+}
+
+.slide-in {
+  animation: slide-in 0.3s ease-out;
+}
+
+.slide-out {
+  animation: slide-out 0.3s ease-in;
+}
+
+@keyframes fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes fade-out {
+  from { opacity: 1; }
+  to { opacity: 0; }
+}
+
+@keyframes slide-in {
+  from { transform: translateY(10px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+@keyframes slide-out {
+  from { transform: translateY(0); opacity: 1; }
+  to { transform: translateY(10px); opacity: 0; }
+} 
