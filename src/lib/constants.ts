@@ -15,9 +15,62 @@ export const LOCAL_STORAGE_KEYS = {
 export const ROUTES = {
   HOME: '/',
   AUTH: '/auth',
-  DASHBOARD: '/dashboard',
   CHAT: '/chat',
+  DASHBOARD: '/dashboard',
 } as const;
+
+export const COUNTRIES = [
+  {
+    value: '+1',
+    label: 'United States',
+    flag: 'https://flagcdn.com/w40/us.png',
+  },
+  {
+    value: '+44',
+    label: 'United Kingdom',
+    flag: 'https://flagcdn.com/w40/gb.png',
+  },
+  {
+    value: '+91',
+    label: 'India',
+    flag: 'https://flagcdn.com/w40/in.png',
+  },
+  {
+    value: '+234',
+    label: 'Nigeria',
+    flag: 'https://flagcdn.com/w40/ng.png',
+  },
+  {
+    value: '+27',
+    label: 'South Africa',
+    flag: 'https://flagcdn.com/w40/za.png',
+  },
+  {
+    value: '+254',
+    label: 'Kenya',
+    flag: 'https://flagcdn.com/w40/ke.png',
+  },
+  {
+    value: '+255',
+    label: 'Tanzania',
+    flag: 'https://flagcdn.com/w40/tz.png',
+  },
+  {
+    value: '+256',
+    label: 'Uganda',
+    flag: 'https://flagcdn.com/w40/ug.png',
+  },
+  {
+    value: '+250',
+    label: 'Rwanda',
+    flag: 'https://flagcdn.com/w40/rw.png',
+  },
+  {
+    value: '+251',
+    label: 'Ethiopia',
+    flag: 'https://flagcdn.com/w40/et.png',
+  },
+] as const;
 
 export const AI_RESPONSES = [
   "That's an interesting perspective. Let me think about that for a moment...",

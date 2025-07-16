@@ -60,15 +60,22 @@ export function PhoneForm({
           alt={`${country.label} flag`}
           width={20}
           height={15}
-          className="rounded"
+          className="flex-none rounded"
         />
-        <span>{country.label}</span>
-        <span className="text-[hsl(var(--muted-foreground))]">
+        <span className="flex-none text-[hsl(var(--muted-foreground))]">
           {country.value}
         </span>
+        <span className="flex-1 truncate">{country.label}</span>
       </div>
     ),
   }));
+
+  const placeholder = (
+    <div className="flex items-center gap-2 text-[hsl(var(--muted-foreground))]">
+      <div className="h-[15px] w-5 rounded bg-[hsl(var(--muted))]" />
+      <span>Select country</span>
+    </div>
+  );
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className={cn('space-y-4', className)}>
@@ -81,10 +88,10 @@ export function PhoneForm({
           <div className="text-sm text-[hsl(var(--destructive))]">{error}</div>
         ) : (
           <Select
-            value={countryCode}
+            value={countryCode || null}
             onValueChange={(value) => setValue('countryCode', value)}
             options={formattedCountries}
-            placeholder="Select country"
+            placeholder={placeholder}
             error={errors.countryCode?.message}
           />
         )}
